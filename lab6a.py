@@ -4,27 +4,21 @@ matplotlib.use('TkAgg')
 import matplotlib.pyplot as plt
 from minisom import MiniSom
 
-# Generate random 3D data (100 samples, 3 features)
 data = np.random.rand(100, 3)
 
-# Create and train a SOM
 som_size = 10
 som = MiniSom(som_size, som_size, 3, sigma=2.0, learning_rate=0.5)
 som.random_weights_init(data)
 som.train_random(data, 1000)
 
-# Visualize the SOM
 plt.figure(figsize=(8, 8))
-# Get the weights for visualization
 weights = som.get_weights()
 plt.imshow(weights)
 plt.colorbar()
 plt.title("Self-Organizing Map")
 
-# Map data to SOM coordinates
 mapped = np.array([som.winner(d) for d in data])
 
-# Optional: Plot the data points mapped onto SOM
 plt.figure(figsize=(8, 8))
 plt.pcolor(weights, cmap='bone_r')
 plt.colorbar()
