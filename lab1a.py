@@ -62,8 +62,4 @@ if __name__ == "__main__":
         output = neuron.activate(inputs)
         print(f"{name} Output: {output}")
 
-        if name != "Softmax":
-            weights, bias = update_weights(weights, bias, inputs, target, output, lr)
-            print(f"Updated Weights: {weights}, Updated Bias: {bias}")
-
         plot_activation(func, name)
