@@ -4,12 +4,10 @@ import matplotlib.pyplot as plt
 import tensorflow as tf
 from tensorflow.keras import layers, models, datasets
 
-# Load MNIST
 (train_images, train_labels), (test_images, test_labels) = datasets.mnist.load_data()
-train_images = train_images[..., tf.newaxis]/255.0  # Add channel dim & normalize
+train_images = train_images[..., tf.newaxis]/255.0
 test_images = test_images[..., tf.newaxis]/255.0
 
-# LeNet-5 Model
 model = models.Sequential([
     layers.Conv2D(6, (5,5), activation='tanh', input_shape=(28,28,1)),
     layers.AveragePooling2D((2,2)),
@@ -21,7 +19,6 @@ model = models.Sequential([
     layers.Dense(10, activation='softmax')
 ])
 
-# Compile and Train
 model.compile(optimizer='adam',
               loss='sparse_categorical_crossentropy',
               metrics=['accuracy'])
@@ -29,7 +26,6 @@ history = model.fit(train_images, train_labels, epochs=1,
                     validation_data=(test_images, test_labels), verbose=1)
 
 print(model.evaluate(test_images, test_labels))
-# Confusion Matrix
 predictions = model.predict(test_images)
 cm = tf.math.confusion_matrix(test_labels, tf.argmax(predictions, axis=1))
 
