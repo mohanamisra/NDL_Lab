@@ -7,7 +7,7 @@ from minisom import MiniSom
 data = np.random.rand(100, 3)
 
 som_size = 10
-som = MiniSom(som_size, som_size, 3, sigma=2.0, learning_rate=0.5)
+som = MiniSom(som_size, som_size, 3, learning_rate=0.5)
 som.random_weights_init(data)
 som.train_random(data, 1000)
 

@@ -3,7 +3,6 @@ import tensorflow as tf
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import SimpleRNN, Dense
 from tensorflow.keras.optimizers import Adam
-from tensorflow.keras.callbacks import LambdaCallback
 
 time_steps, input_dim, hidden_dim, output_dim = 5, 3, 4, 2
 
@@ -17,10 +16,5 @@ model = Sequential([
 
 model.compile(optimizer=Adam(learning_rate=0.001), loss='mse')
 
-print_callback = LambdaCallback(
-    on_epoch_end=lambda epoch, logs: print(f"Epoch {epoch}, Loss: {logs['loss']:.4f}")
-    if epoch % 10 == 0 else None
-)
-
-model.fit(inputs, targets, epochs=50, verbose=0, callbacks=[print_callback])
-print(model.evaluate(inputs, targets, verbose=0))
+model.fit(inputs, targets, epochs=50, verbose=2)
+print(model.evaluate(inputs, targets, verbose=2))

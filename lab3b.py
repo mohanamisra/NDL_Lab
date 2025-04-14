@@ -1,8 +1,8 @@
 import numpy as np
 import tensorflow as tf
 
-X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]], dtype=np.float32)
-y = np.array([[0], [1], [1], [0]], dtype=np.float32)
+X = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
+y = np.array([[0], [1], [1], [0]])
 
 for lr in [0.01, 0.1, 0.5]:
     print(f"\nTraining with Learning Rate: {lr}")
